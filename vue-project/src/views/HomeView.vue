@@ -3,6 +3,11 @@
 </script>
 
 <template>
+    <div id="Choose">
+        <button @click="Val = !Val">Är du bekant med fåglar?</button>
+        <h1 v-if="Val">Jag är rutinerad</h1>
+        <h1 v-else>Jag är helt ny</h1>
+    </div>
     <h1 class="bird-title">{{ message }}</h1>
     <div id="info">
         <div class="container text-center">
@@ -17,12 +22,17 @@
     export default {
         data() {
             return {
+                Val: true
+            }
+        },
+        data() {
+            return {
                 message: 'Fåglar i sverige!',
                 birds: []
             }
         },
 
-        components: { 'bird': BirdTypes },
+        components: { bird: BirdTypes },
         mounted() {
             this.fetchData()
         },
@@ -32,7 +42,9 @@
                 const result = await res.json()
                 this.birds = result
             }
-        }
+        },
+
     }
 </script>
+
 <style scoped></style>
